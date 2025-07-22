@@ -2,7 +2,6 @@ import { DataSource } from 'typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Global, Logger, Module } from '@nestjs/common';
 import { Portfolio } from '@app/resources/portfolios/entities/portfolio.entity';
-import { Stock } from '@app/resources/stocks/entities/stock.entity';
 import { Transaction } from '@app/resources/transactions/entities/transaction.entity';
 import { User } from '@app/resources/users/entities/user.entity';
 import { DatabaseService } from '@app/config/database.service';
@@ -32,7 +31,7 @@ import { DatabaseService } from '@app/config/database.service';
             database: configService.get<string>('DB_NAME'),
             synchronize: true, // Recommended to be false in production
             migrations: ['dist/migrations/*{.ts,.js}'],
-            entities: [Portfolio, Stock, Transaction, User], // this will automatically load all entity file in the src folder
+            entities: [Portfolio, Transaction, User], // this will automatically load all entity file in the src folder
             logging:
               configService.get('NODE_ENV') === 'prod'
                 ? ['error']

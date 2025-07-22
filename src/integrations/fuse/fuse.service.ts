@@ -2,7 +2,6 @@ import { Injectable, Logger } from '@nestjs/common';
 import { HttpModuleOptions, HttpModuleOptionsFactory, HttpService } from '@nestjs/axios';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { ConfigService } from '@nestjs/config';
-
 @Injectable()
 export class FuseService implements HttpModuleOptionsFactory {
   protected logger = new Logger(FuseService.name)

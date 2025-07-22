@@ -5,7 +5,6 @@ import {
   ManyToOne,
   CreateDateColumn,
 } from 'typeorm';
-import { Stock } from '@app/resources/stocks/entities/stock.entity';
 import { User } from '@app/resources/users/entities/user.entity';
 
 @Entity('transactions')
@@ -16,8 +15,8 @@ export class Transaction {
   @ManyToOne(() => User, (user) => user.transactions, { onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToOne(() => Stock, (stock) => stock.transactions, { eager: true })
-  stock: Stock;
+  @Column()
+  stock: string;
 
   @Column('numeric', { precision: 10, scale: 2 })
   price: number;
