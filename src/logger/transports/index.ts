@@ -1,6 +1,6 @@
-import { customFormat } from '../formats'
+import { customFormat } from '../formats';
 
-import * as winston from 'winston'
+import * as winston from 'winston';
 
 // Correct usage
 export const getTransports = () => {
@@ -8,5 +8,5 @@ export const getTransports = () => {
     new winston.transports.Console({
       format: customFormat, // Apply the custom formatter
     }),
-  ]
-}
+  ];
+};

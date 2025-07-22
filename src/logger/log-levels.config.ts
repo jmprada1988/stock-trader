@@ -2,7 +2,7 @@ export const logLevelsBase = {
   error: 0,
   warn: 1,
   info: 2,
-}
+};
 
 export const logLevels = {
   local: {
@@ -19,10 +19,10 @@ export const logLevels = {
   prod: {
     ...logLevelsBase,
   },
-}
+};
 export const level = {
   local: 'debug',
   dev: 'verbose',
   qa: 'verbose',
   prod: 'error',
-}
+};
