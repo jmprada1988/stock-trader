@@ -11,6 +11,7 @@ import { StocksModule } from './resources/stocks/stocks.module';
 import { PortfoliosModule } from './resources/portfolios/portfolios.module';
 import { TransactionsModule } from './resources/transactions/transactions.module';
 import { DatasourceModule } from '@app/config/datasource.module';
+import { FuseModule } from '@app/integrations/fuse/fuse.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -30,6 +31,7 @@ import { DatasourceModule } from '@app/config/datasource.module';
     StocksModule,
     PortfoliosModule,
     TransactionsModule,
+    FuseModule
   ],
   controllers: [AppController],
   providers: [AppService],

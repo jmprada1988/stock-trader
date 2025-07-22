@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { StocksService } from './stocks.service';
 
 import { Crud, CrudController } from '@dataui/crud';
@@ -22,4 +22,9 @@ import { Stock } from '@app/resources/stocks/entities/stock.entity';
 @Controller('stocks')
 export class StocksController implements CrudController<Stock>{
   constructor(public readonly service: StocksService) {}
+
+  @Get('explore')
+  async exploreAvailableStocks() {
+    return this.service.exploreAvailableStocks()
+  }
 }

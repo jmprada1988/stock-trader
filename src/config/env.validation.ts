@@ -44,6 +44,11 @@ class EnvironmentVariables {
   DB_NAME: string;
 
   @IsString()
+  FUSE_API_URL: string
+  @IsString()
+  FUSE_API_KEY: string
+
+  @IsString()
   @IsOptional()
   DB_SSL?: string; // Optional DB_SSL configuration
 }

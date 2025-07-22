@@ -3,9 +3,10 @@ import { StocksService } from './stocks.service';
 import { StocksController } from './stocks.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Stock } from '@app/resources/stocks/entities/stock.entity';
+import { FuseModule } from '@app/integrations/fuse/fuse.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Stock])],
+  imports: [TypeOrmModule.forFeature([Stock]), FuseModule],
   controllers: [StocksController],
   providers: [StocksService],
   exports: [StocksService],
