@@ -1,45 +1,27 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
-import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { Crud, CrudController } from '@dataui/crud';
+import { Transaction } from '@app/resources/transactions/entities/transaction.entity';
+import { ApiTags } from '@nestjs/swagger';
+import { TransactionDto } from '@app/resources/transactions/dto/transaction.dto';
+
+@Crud({
+  model: { type: Transaction},
+  params: {
+    id: {
+      field: 'id',
+      type: 'uuid',
+      primary: true,
+    },
+  },
+  dto: { create: TransactionDto },
+  serialize: {
+    create: TransactionDto, get: TransactionDto, getMany: TransactionDto, update: TransactionDto, replace: TransactionDto
+  }
+})
 
 @Controller('transactions')
-export class TransactionsController {
-  constructor(private readonly transactionsService: TransactionsService) {}
-
-  @Post()
-  create(@Body() createTransactionDto: CreateTransactionDto) {
-    return this.transactionsService.create(createTransactionDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.transactionsService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.transactionsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateTransactionDto: UpdateTransactionDto,
-  ) {
-    return this.transactionsService.update(+id, updateTransactionDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.transactionsService.remove(+id);
-  }
+@ApiTags('Transactions')
+export class TransactionsController implements  CrudController<Transaction> {
+  constructor(public readonly service: TransactionsService) {}
 }

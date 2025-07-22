@@ -1,45 +1,27 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { PortfoliosService } from './portfolios.service';
-import { CreatePortfolioDto } from './dto/create-portfolio.dto';
-import { UpdatePortfolioDto } from './dto/update-portfolio.dto';
+import {  PortfolioDto } from './dto/portfolio.dto';
+import { Crud, CrudController } from '@dataui/crud';
+import { Portfolio } from '@app/resources/portfolios/entities/portfolio.entity';
+import { ApiTags } from '@nestjs/swagger';
 
+@Crud({
+  model: { type: Portfolio},
+  params: {
+    id: {
+      field: 'id',
+      type: 'uuid',
+      primary: true,
+    },
+  },
+  dto: {
+    create: PortfolioDto,
+    update: PortfolioDto,
+  },
+  serialize: { get: PortfolioDto, getMany: PortfolioDto }
+})
 @Controller('portfolios')
-export class PortfoliosController {
-  constructor(private readonly portfoliosService: PortfoliosService) {}
-
-  @Post()
-  create(@Body() createPortfolioDto: CreatePortfolioDto) {
-    return this.portfoliosService.create(createPortfolioDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.portfoliosService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.portfoliosService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updatePortfolioDto: UpdatePortfolioDto,
-  ) {
-    return this.portfoliosService.update(+id, updatePortfolioDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.portfoliosService.remove(+id);
-  }
+@ApiTags('Portfolios')
+export class PortfoliosController implements  CrudController<Portfolio>{
+  constructor(public readonly service: PortfoliosService) {}
 }

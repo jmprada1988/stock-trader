@@ -1,26 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePortfolioDto } from './dto/create-portfolio.dto';
-import { UpdatePortfolioDto } from './dto/update-portfolio.dto';
+import { TypeOrmCrudService } from '@dataui/crud-typeorm';
+import { Portfolio } from '@app/resources/portfolios/entities/portfolio.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class PortfoliosService {
-  create(createPortfolioDto: CreatePortfolioDto) {
-    return 'This action adds a new portfolio';
-  }
-
-  findAll() {
-    return `This action returns all portfolios`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} portfolio`;
-  }
-
-  update(id: number, updatePortfolioDto: UpdatePortfolioDto) {
-    return `This action updates a #${id} portfolio`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} portfolio`;
+export class PortfoliosService extends  TypeOrmCrudService<Portfolio>{
+  constructor(@InjectRepository(Portfolio) repo) {
+    super(repo);
   }
 }
