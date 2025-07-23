@@ -1,6 +1,8 @@
 # Technical Report: NestJS API Architecture
 
 ## Overview
+## This [video](https://www.loom.com/share/d0a472ee792d44629b77d68d7c423878?sid=cbffbb2c-9e72-4bb0-9842-f35bd5dea90b) will give you a brief overview of the api
+
 
 This project follows the NestJS standard modular architecture. It exposes a RESTful API, provides Swagger documentation, integrates with external services, and includes robust scheduling, event-driven features, and detailed logging.
 
