@@ -24,11 +24,7 @@ import { DatabaseService } from '@app/config/database.service';
 
           const dataSource = new DataSource({
             type: 'postgres',
-            host: configService.get<string>('DB_HOST'),
-            port: parseInt(configService.get<string>('DB_PORT'), 10) || 5432,
-            username: configService.get<string>('DB_USER'),
-            password: configService.get<string>('DB_PASS'),
-            database: configService.get<string>('DB_NAME'),
+            url: configService.get<string>('DATABASE_URL'),
             synchronize: true, // Recommended to be false in production
             migrations: ['dist/migrations/*{.ts,.js}'],
             entities: [Portfolio, Transaction, User], // this will automatically load all entity file in the src folder

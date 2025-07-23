@@ -25,24 +25,8 @@ class EnvironmentVariables {
   @Min(0)
   @Max(65535)
   INTERNAL_PORT: number;
-
   @IsString()
-  DB_HOST: string;
-
-  @IsNumber()
-  @Min(0)
-  @Max(65535)
-  DB_PORT: number;
-
-  @IsString()
-  DB_USER: string;
-
-  @IsString()
-  DB_PASS: string;
-
-  @IsString()
-  DB_NAME: string;
-
+  DATABASE_URL: string
   @IsString()
   FUSE_API_URL: string
   @IsString()

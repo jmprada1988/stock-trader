@@ -12,6 +12,9 @@ import { PortfoliosModule } from './resources/portfolios/portfolios.module';
 import { TransactionsModule } from './resources/transactions/transactions.module';
 import { DatasourceModule } from '@app/config/datasource.module';
 import { FuseModule } from '@app/integrations/fuse/fuse.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { ReportsModule } from '@app/resources/reports/reports.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,12 +29,15 @@ import { FuseModule } from '@app/integrations/fuse/fuse.module';
         createLogger(configService.get('winston')),
       inject: [ConfigService],
     }),
+    EventEmitterModule.forRoot(),
+    ScheduleModule.forRoot(),
     DatasourceModule,
     UsersModule,
     StocksModule,
     PortfoliosModule,
     TransactionsModule,
-    FuseModule
+    FuseModule,
+    ReportsModule
   ],
   controllers: [AppController],
   providers: [AppService],
